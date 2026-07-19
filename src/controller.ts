@@ -51,7 +51,7 @@ try{
     }else{
         const now=Date.now()
         const expiretime=tokres.expired_at
-        if(now > expiretime?.getTime()){
+        if(!expiretime || now > expiretime?.getTime()){
             refresh=refreshtoken(res.userid)
             await tokencollection.updateOne({userid:res.userid},{$set:{token:refresh,added_at:Date.now(),expired_at:new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)}})
         }else{

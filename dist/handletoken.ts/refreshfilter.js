@@ -14,7 +14,7 @@ const refreshfilter = (req, resp) => {
     try {
         const decode = jsonwebtoken_1.default.verify(refresh, process.env.REFRESH_SECRET);
         const access = (0, tokengenerate_1.accesstoken)(decode.id);
-        return resp.status(200).send(access);
+        return resp.status(200).send({ access: access });
     }
     catch (err) {
         console.log(err);

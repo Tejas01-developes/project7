@@ -49,7 +49,7 @@ const loginuser = async (req, resp) => {
         else {
             const now = Date.now();
             const expiretime = tokres.expired_at;
-            if (now > expiretime?.getTime()) {
+            if (!expiretime || now > expiretime?.getTime()) {
                 refresh = (0, tokengenerate_1.refreshtoken)(res.userid);
                 await tokenschema_1.tokencollection.updateOne({ userid: res.userid }, { $set: { token: refresh, added_at: Date.now(), expired_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) } });
             }

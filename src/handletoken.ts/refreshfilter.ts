@@ -14,7 +14,7 @@ try{
     const decode=jwt.verify(refresh,process.env.REFRESH_SECRET as string) as JwtPayload
    
   const access=accesstoken(decode.id)
-  return resp.status(200).send(access)
+  return resp.status(200).send({access:access})
 
 }catch(err){
     console.log(err)
