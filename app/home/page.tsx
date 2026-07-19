@@ -23,6 +23,7 @@ const Home = () => {
 const{register,handleSubmit,formState:{errors}}=useForm<addtype>()
 const[add]=useMutation(addfriend)
 
+
   useEffect(()=>{
     if(!isAuth){
       routes.replace("/")
@@ -32,7 +33,8 @@ const[add]=useMutation(addfriend)
   if(!isAuth){
     return null
   }
-const token=getaccess()
+
+
 
 const addfrnd=async(data:addtype)=>{
 const invite=await add({
@@ -51,10 +53,11 @@ return alert("user added")
 
   return (
     <div>
+    
       <form onSubmit={handleSubmit(addfrnd)}>
      <input type="text" placeholder='Name' {...register("name",{required:"Name field is compulsary"})} />
      {errors.name && (
-      <p>{String(errors.email?.message)}</p>
+      <p>{String(errors.name?.message)}</p>
      )}
      <input type="text" placeholder='Email' {...register("email",{required:"Email is missing"})} />
      {errors.email && (
@@ -65,7 +68,9 @@ return alert("user added")
       <p>{String(errors.age.message)}</p>
      )}
      <button type='submit'>Add</button>
+    
      </form>
+    
     </div>
   )
 }

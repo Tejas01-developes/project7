@@ -1,9 +1,10 @@
 "use client"
 
 import { createContext, useEffect, useState } from "react";
-import api from "./axios";
 import { clearaccess, setaccess } from "./token";
 import axios from "axios";
+
+
 
 export const Authcontext=createContext(null)
 
@@ -14,9 +15,9 @@ export const Authprovider=({children}:{children:React.ReactNode})=>{
     useEffect(()=>{
         const checkusersession=async()=>{
             try{
-            const {data}=await axios.post("http://localhost:4000/apis/refresh",{},{withCredentials:true})
-            setaccess(data.access)
-           return setisAuth(true)
+            const res=await axios.post("http://localhost:4000/apis/refresh",{},{withCredentials:true})
+            setaccess(res.data.access)
+            setisAuth(true)
         }catch(err){
             clearaccess()
             setisAuth(false)
