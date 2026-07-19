@@ -1,0 +1,2 @@
+export declare const routeschema = "\ntype resptype{\n    success:Boolean\n    message:String\n}\n\ntype Mutation{\nadduser(name:String,email:String,age:String):resptype\n}\n\n\ntype Query{\n    _empty:String\n}\n";
+//# sourceMappingURL=routeschema.d.ts.map

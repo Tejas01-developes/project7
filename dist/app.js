@@ -9,6 +9,10 @@ const formbody_1 = __importDefault(require("@fastify/formbody"));
 const cookie_1 = __importDefault(require("@fastify/cookie"));
 const connectdb_1 = __importDefault(require("./dbconnect/connectdb"));
 const routes_1 = require("./routes");
+const mercurius_1 = __importDefault(require("mercurius"));
+const resolver_1 = require("./graphql/resolver");
+const routeschema_1 = require("./graphql/routeschema");
+const context_1 = require("./context");
 const app = (0, fastify_1.default)();
 app.register(cors_1.default, {
     origin: "http://localhost:3000",
@@ -18,6 +22,12 @@ app.register(cors_1.default, {
 });
 app.register(formbody_1.default);
 app.register(cookie_1.default);
+app.register(mercurius_1.default, {
+    resolvers: resolver_1.resolver,
+    schema: routeschema_1.routeschema,
+    context: context_1.setcontext,
+    graphiql: true
+});
 app.register(routes_1.router, { prefix: "/apis" });
 app.listen({ port: 4000 }, async () => {
     await connectdb_1.default.connect();
