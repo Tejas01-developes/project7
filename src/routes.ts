@@ -1,4 +1,4 @@
-import fastify, { FastifyInstance } from 'fastify';
+import { FastifyInstance } from 'fastify';
 import { demofunction, loginuser, registeruser } from './controller';
 import { refreshfilter } from './handletoken.ts/refreshfilter';
 import { accessfilter } from './handletoken.ts/accessfilter';

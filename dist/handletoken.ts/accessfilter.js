@@ -9,7 +9,8 @@ const accessfilter = (req, resp, next) => {
     const token = req.headers.authorization;
     const access = token?.split(" ")[1];
     if (!access) {
-        return resp.status(400).send("Access token is absent");
+        resp.status(400).send("Access token is absent");
+        return;
     }
     try {
         const decode = jsonwebtoken_1.default.verify(access, process.env.ACCESS_SECRET);
@@ -17,7 +18,8 @@ const accessfilter = (req, resp, next) => {
         next();
     }
     catch (err) {
-        return resp.status(400).send("Access filter failed");
+        resp.status(400).send("Access filter failed");
+        return;
     }
 };
 exports.accessfilter = accessfilter;
