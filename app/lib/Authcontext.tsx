@@ -1,12 +1,15 @@
 "use client"
 
-import { createContext, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, createContext, useEffect, useState } from "react";
 import { clearaccess, setaccess } from "./token";
 import axios from "axios";
 
+interface authtype{
+    isAuth:boolean
+    setisAuth:Dispatch<SetStateAction<boolean>>
+}
 
-
-export const Authcontext=createContext(null)
+export const Authcontext=createContext<authtype | null>(null)
 
 export const Authprovider=({children}:{children:React.ReactNode})=>{
     const[loading,setloading]=useState(true)

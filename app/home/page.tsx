@@ -16,6 +16,7 @@ interface addtype{
 }
 
 
+
 const Home = () => {
 
   const routes=useRouter()
